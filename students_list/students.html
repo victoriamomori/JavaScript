@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Students</title>
+    <style>
+        td {
+            border: 1px solid black;
+        }
+
+        thead tr td {
+            border: 1px double black;
+            text-align: center;
+        }
+
+        .message {
+            color: red;
+            font-size: small;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<table>
+    <thead>
+    <tr class="table">
+        <td class="table">
+            <span class="title">Номер студенческого</span>
+            <button onclick="sortBy('studNumber')">^</button>
+        </td>
+        <td class="table">
+            <span class="title" id="surnameHeader" onclick="makeHeaderInput(this.id)">Фамилия</span>
+            <button id="surnameHeaderButton" onclick="sortBy('surname')">^</button>
+        </td>
+        <td class="table">
+            <span class="title" id="nameHeader" onclick="makeHeaderInput(this.id)">Имя</span>
+            <button id="nameHeaderButton" onclick="sortBy('name')">^</button>
+        </td>
+        <td class="table">
+            <span class="title" id="patronymicHeader" onclick="makeHeaderInput(this.id)">Отчество</span>
+            <button id="patronymicHeaderButton" onclick="sortBy('patronymic')">^</button>
+        </td>
+        <td class="table">
+            <span class="title">Дата рождения</span>
+            <button onclick="sortBy('birthday')">^</button>
+        </td>
+        <td class="table">
+            <span class="title" id="groupNumberHeader" onclick="makeHeaderInput(this.id)">Номер группы</span>
+            <button id="groupNumberHeaderButton" onclick="sortBy('groupNumber')">^</button>
+        </td>
+        <td class="table">
+            <span class="title">Email</span>
+            <button onclick="sortBy('email')">^</button>
+        </td>
+    </tr>
+    </thead>
+    <tbody id="students">
+
+    </tbody>
+</table>
+
+<h3 id="AddNewStudent">Add new student</h3>
+
+<label class="label" for="studNumber">Enter stud number:</label>
+<input class="input" type="text" id="studNumber"><br>
+<p class="message" id="studNumberMessage"></p>
+
+<label class="label" for="surname">Enter surname:</label>
+<input class="input" type="text" id="surname"><br>
+
+<label class="label" for="name">Enter name:</label>
+<input class="input" type="text" id="name"><br>
+
+<label class="label" for="patronymic">Enter patronymic:</label>
+<input class="input" type="text" id="patronymic"><br>
+
+<label class="label" for="birthday">Enter birthday:</label>
+<input class="input" type="text" id="birthday"><br>
+
+<label class="label" for="groupNumber">Enter group number:</label>
+<input class="input" type="text" id="groupNumber"><br>
+
+<label class="label" for="email">Enter email:</label>
+<input class="input" type="text" id="email"><br>
+
+<button id="submit" onclick="addStudent()">Add</button>
+
+<div class="comment">
+    <p class="text">1.Кнопки сортировок в названии столбцов(^).</p>
+    <p class="text">2.Поиск по столбцам b-d и по номеру группы - нажмите на поле Фамилия, Имя, Отчество или номер группы</p>
+    <p class="text">3.Чтобы отменить поиск нужно оставить строку пустой и выполнить поиск</p>
+</div>
+
+<script>
+    class Student {
+        studNumber;
+        surname;
+        name;
+        patronymic; //отчество
+        birthday;
+        groupNumber;
+        email;
+
+        constructor(studNumber, surname, name, patronymic, birthday, groupNumber, email) {
+            this.studNumber = studNumber;
+            this.surname = surname;
+            this.name = name;
+            this.patronymic = patronymic;
+            this.birthday = birthday;
+            this.groupNumber = groupNumber;
+            this.email = email;
+        }
+
+        sortByStudNumber(s1, s2) {
+            return (s1.studNumber - s2.studNumber);
+        }
+
+        sortBySurname(s1, s2) {
+            if (s1.surname.toLowerCase() > s2.surname.toLowerCase()) {
+                return 1;
+            } else {
+                if (s1.surname.toLowerCase() < s2.surname.toLowerCase()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        sortByName(s1, s2) {
+            if (s1.name.toLowerCase() > s2.name.toLowerCase()) {
+                return 1;
+            } else {
+                if (s1.name.toLowerCase() < s2.name.toLowerCase()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        sortByPatronymic(s1, s2) {
+            if (s1.patronymic.toLowerCase() > s2.patronymic.toLowerCase()) {
+                return 1;
+            } else {
+                if (s1.patronymic.toLowerCase() < s2.patronymic.toLowerCase()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        sortByGroupNumber(s1, s2) {
+            // groupNumber ex: "11-909"
+
+            let group1 = s1.groupNumber.split('-');
+            let group2 = s2.groupNumber.split('-');
+            return group1[1] - group2[1];
+        }
+
+        sortByEmail(s1, s2) {
+            if (s1.email.toLowerCase() > s2.email.toLowerCase()) {
+                return 1;
+            } else {
+                if (s1.email.toLowerCase() < s2.email.toLowerCase()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        }
+
+        sortByBirthday(s1, s2) {
+            //birthday ex: "01-01-2000"
+
+            let date1 = s1.birthday.split('-');
+            let date2 = s2.birthday.split('-');
+            if (date1[2] === date2[2]) {
+                if (date1[1] === date2[1]) {
+                    return date1[0] - date2[0];
+                } else {
+                    return date1[1] - date2[1];
+                }
+            } else {
+                return date1[2] - date2[2];
+            }
+        }
+    }
+
+    let student1 = new Student(0, 'Davletyarov', 'Ildar', 'Nailevich', '01-05-2001', '11-808', 'shakotan@gmail.com');
+    let student2 = new Student(1, 'Muhortova', 'Liza', 'Andreevna', '29-12-2000', '11-907', 'muhortova@mail.ru');
+    let student3 = new Student(2, 'Gabov', 'Damir', 'Airatovich', '24-11-2000', '11-803', 'gabdam@gmail.com');
+    let student4 = new Student(4, 'Saidashev', 'Bulat', 'Megsumovivch', '10-05-2000', '11-803', 'bekbulat@gmail.com');
+
+    const START_STUDENTS = [student1, student2, student3, student4];
+
+    let students = START_STUDENTS;
+
+    document.body.onload = function () {
+        fillTableWithStudents(students);
+        validate();
+    }
+
+    function validate() {
+        let studNumber = document.getElementById('studNumber');
+        let surname = document.getElementById('surname');
+        let name = document.getElementById('name');
+        let patronymic = document.getElementById('patronymic');
+        let birthday = document.getElementById('birthday');
+        let groupNumber = document.getElementById('groupNumber');
+        let email = document.getElementById('email')
+
+        let digitRegExp = /^\d+$/m;
+        let studNumberMessage = "Incorrect stud number";
+
+        let lettersRegExp = /^\D*$/m;
+        let surnameMessage = "Incorrect surname";
+
+        let nameMessage = "Incorrect name";
+
+        let patronymicMessage = "Incorrect patronymic";
+
+        let birthdayRegExp = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20)\d\d$/m;
+        let birthdayMessage = "Incorrect birthday format";
+
+        let groupNumberRegExp = /^11-[7890][01][1-9]$/m;
+        let groupNumberMessage = "Incorrect group number";
+
+        let emailRegExp = /^\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/m;
+        let emailMessage = "Incorrect email format";
+
+        studNumber.oninput = function () {
+            validateInput(studNumber, digitRegExp, studNumberMessage);
+        }
+        surname.oninput = function () {
+            validateInput(surname, lettersRegExp, surnameMessage);
+        }
+        name.oninput = function () {
+            validateInput(name, lettersRegExp, nameMessage);
+        }
+        patronymic.oninput = function () {
+            validateInput(patronymic, lettersRegExp, patronymicMessage);
+        }
+        birthday.oninput = function () {
+            validateInput(birthday, birthdayRegExp, birthdayMessage);
+        }
+        groupNumber.oninput = function () {
+            validateInput(groupNumber, groupNumberRegExp, groupNumberMessage);
+        }
+        email.oninput = function () {
+            validateInput(email, emailRegExp, emailMessage);
+        }
+    }
+
+    function validateInput(elem, regExp, messageText) {
+        let val = elem.value
+        let message = document.getElementById(elem.id + "Message");
+        let submitButton = document.getElementById('submit');
+
+        if (val.length > 0) {
+            if (!val.match(regExp)) {
+                message.innerText = messageText;
+                submitButton.onclick = function () {
+                    alert(message.innerText);
+                }
+            } else {
+                message.innerText = "";
+                submitButton.onclick = function () {
+                    addStudent();
+                };
+            }
+        } else {
+            message.innerText = "";
+            submitButton.onclick = function () {
+                addStudent();
+            };
+        }
+
+    }
+
+    function fillTableWithStudents(students) {
+        let tableBody = document.getElementById("students");
+        while (tableBody.hasChildNodes()) {
+            tableBody.removeChild(tableBody.firstChild)
+        }
+        for (let i = 0; i < students.length; i++) {
+            let student = students[i];
+            addStudentAsRow(tableBody, student);
+        }
+    }
+
+    function addStudent() {
+        let studNumber = document.getElementById('studNumber').value;
+        let surname = document.getElementById('surname').value;
+        let name = document.getElementById('name').value;
+        let patronymic = document.getElementById('patronymic').value;
+        let birthday = document.getElementById('birthday').value;
+        let groupNumber = document.getElementById('groupNumber').value;
+        let email = document.getElementById('email').value;
+
+        let student = new Student(studNumber, surname, name, patronymic, birthday, groupNumber, email);
+        students.push(student);
+        let tableBody = document.getElementById('students');
+        addStudentAsRow(tableBody, student);
+    }
+
+    function addStudentAsRow(table, student) {
+        let row = table.insertRow();
+        let cellStudNumber = row.insertCell();
+        cellStudNumber.innerHTML = student.studNumber;
+        let cellSurname = row.insertCell();
+        cellSurname.innerHTML = student.surname;
+        let cellName = row.insertCell();
+        cellName.innerHTML = student.name;
+        let cellPatronymic = row.insertCell();
+        cellPatronymic.innerHTML = student.patronymic;
+        let cellBirthday = row.insertCell();
+        cellBirthday.innerHTML = student.birthday;
+        let cellGroupNumber = row.insertCell();
+        cellGroupNumber.innerHTML = student.groupNumber;
+        let cellEmail = row.insertCell();
+        cellEmail.innerHTML = student.email;
+    }
+
+    function sortBy(category) {
+        let student = new Student();
+        switch (category) {
+            case "surname": {
+                students.sort(student.sortBySurname)
+                break;
+            }
+            case "name": {
+                students.sort(student.sortByName)
+                break;
+            }
+            case "patronymic": {
+                students.sort(student.sortByPatronymic)
+                break;
+            }
+            case "birthday": {
+                students.sort(student.sortByBirthday)
+                break;
+            }
+            case "groupNumber": {
+                students.sort(student.sortByGroupNumber)
+                break;
+            }
+            case "email": {
+                students.sort(student.sortByEmail)
+                break;
+            }
+            default : {
+                students.sort(student.sortByStudNumber)
+                break;
+            }
+        }
+        fillTableWithStudents(students);
+    }
+
+    function makeHeaderInput(id) {
+        let header = document.getElementById(id);
+        let input = document.createElement('input');
+        input.type = 'text';
+        input.id = id;
+        input.alt = header.innerText;
+        header.parentNode.replaceChild(input, header);
+        let button = document.getElementById(id + "Button");
+        button.innerHTML = "Filter";
+        button.onclick = filter;
+    }
+
+    function makeInputHeader(id) {
+        let input = document.getElementById(id);
+        let header = document.createElement('span');
+        header.id = id;
+        header.innerText = input.alt;
+        header.onclick = function () {
+            makeHeaderInput(id);
+        }
+        input.parentNode.replaceChild(header, input);
+        let button = document.getElementById(id + "Button");
+        button.innerHTML = "^";
+        button.onclick = function () {
+            sortBy(id.split('Header')[0]);
+        }
+    }
+
+    function filter(event) {
+        let id = event.currentTarget.id;
+        let param = id.split("HeaderButton")[0];
+        let word = document.getElementById(param + "Header").value;
+        let filteredStudents = students;
+
+        if (word.length > 0) {
+            if (param === 'surname' || param === 'name' || param === 'patronymic' || param === 'groupNumber') {
+                filteredStudents = students.filter(student => student[param].startsWith(word));
+            }
+        } else {
+            makeInputHeader(param + "Header");
+        }
+        fillTableWithStudents(filteredStudents);
+    }
+
+</script>
+</body>
+</html>

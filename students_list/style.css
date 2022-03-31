@@ -1,0 +1,57 @@
+.label{
+    font-family: "Comic Sans MS", serif;
+    font-size: 15px;
+    margin-left: 10px;
+    color: gainsboro;
+}
+.input{
+    border-radius: 5px;
+    display: block;
+    background-color: lightslategrey;
+    margin-left: 10px;
+}
+#AddNewStudent{
+    padding-top: 10px;
+    font-family: "Comic Sans MS",serif;
+    font-size: 20px;
+    margin-left: 10px;
+    color: gainsboro;
+}
+#submit{
+    margin-left: 60px;
+    border-radius: 10px;
+}
+.title{
+    font-size: 16px;
+    font-weight: bold;
+}
+button{
+    border-radius: 5px;
+    background-color: slategrey;
+}
+table{
+    width: 1200px;
+    font-family: "Comic Sans MS",serif;
+    border: white 1px solid;
+    color: gainsboro;
+    text-align: center;
+}
+body{
+    background-image: url("images/2.jpg");
+}
+.table{
+    border: gainsboro 1px solid;
+}
+.comment{
+    width: 500px;
+    height: 300px;
+    margin-left: 300px;
+    margin-top: -500px;
+}
+.text{
+    font-family: "Comic Sans MS", serif;
+    font-size: 14px;
+    padding-top: 10px;
+    margin-left: 10px;
+    color: ghostwhite;
+}

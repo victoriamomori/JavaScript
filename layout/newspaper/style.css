@@ -1,0 +1,195 @@
+body{
+    background-color: rgb(244 244 244);
+}
+.header{
+    display: inline-block;
+    width: 1261px;
+    height: 100px;
+    margin-top: 13px;
+    horiz-align: center;
+    margin-left: 121px;
+    border-bottom: black 2px solid;
+}
+#menu{
+    font-size: 25px;
+}
+#data {
+    margin-left: 40px;
+    font-family: Calibri, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding-bottom: -15px;
+}
+#tittle {
+    font-size: 70px;
+    font-weight: bold;
+    margin-left: 95px;
+    font-family: "Times New Roman",sans-serif;
+    text-align: center;
+    vertical-align: middle;
+}
+#img2 {
+    float: right;
+    width: 49px;
+    height: 39px;
+    margin-top: 20px;
+}
+.top_news_title{
+    display: inline-block;
+    padding:25px;
+    width: 1300px;
+    margin-left: 100px;
+    border-bottom: black 2px solid;
+}
+.text1{
+    display: block;
+    width: 260px;
+    margin-top: -140px;
+    margin-left: 135px;
+}
+.text2{
+    display: block;
+    width: 260px;
+    margin-top: -65px;
+    margin-left: 460px;
+}
+.text3{
+    display: block;
+    width: 260px;
+    margin-top: -90px;
+    margin-left: 780px;
+}
+.text4{
+    display: block;
+    width: 260px;
+    margin-top: -70px;
+    margin-left: 1100px;
+}
+#text1{
+    font-size: 20px;
+    font-family: "Roboto Light" ,sans-serif;
+    color: white;
+}
+#text2{
+    font-size: 20px;
+    font-family: "Roboto Light",sans-serif;
+    color: white;
+}
+#text3{
+    font-size: 20px;
+    font-family: "Roboto Light",sans-serif;
+    color: white;
+}
+#text4{
+    font-size: 20px;
+    font-family: "Roboto Light",sans-serif;
+    color: white;
+}
+.news_feed {
+    display: block;
+    background: rgb(228, 224, 223);
+    height: 726px;
+    width: 300px;
+    max-width: 726px;
+    margin-top: 70px;
+    margin-left: 125px;
+}
+#news_feed{
+    font-size: 24px;
+    font-family: "Tahoma", serif;
+    font-weight: bold;
+    margin-left: 20px;
+    padding-top: 15px;
+}
+#time1{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed1{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time2{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed2{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time3{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed3{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time4{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed4{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time5{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed5{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time6{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed6{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time7{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed7{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time8{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed8{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+#time9{
+    color: darkgrey;
+    padding-left: 20px;
+}
+#feed9{
+    margin-left: 70px;
+    margin-top: -35px;
+}
+.mainFeed {
+    display: block;
+    margin-top: -725px;
+    margin-left: 450px;
+    width: 935px;
+    max-width: 935px;
+}
+#mainfeed{
+    font: bold 36px/44px 'Roboto Condensed';
+    color: white;
+    margin-top: -200px;
+    margin-left: 25px;
+}
+#mainfeed2{
+    color: #fff;
+    font: normal 15px/20px 'PT Sans Caption';
+    margin-left: 25px;
+}
+

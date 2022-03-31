@@ -1,0 +1,57 @@
+{
+    "dictionary": {
+        "registration": {
+            "eng": "registration",
+            "rus": "регистрация"
+        },
+        "FirstNameLabel": {
+            "eng": "First Name",
+            "rus": "Имя"
+        },
+        "LastNameLabel": {
+            "eng": "Last Name",
+            "rus": "Фамилия"
+        },
+        "EmailLabel": {
+            "eng": "Email",
+            "rus": "Почта"
+        },
+        "AddressLabel": {
+            "eng": "Address",
+            "rus": "Адрес"
+        },
+        "PhoneNumberLabel": {
+            "eng": "Phone Number",
+            "rus": "Телефон"
+        },
+        "CountryLabel": {
+            "eng": "Country",
+            "rus": "Страна"
+        },
+        "SaveAllChanges": {
+            "eng": "Save all changes",
+            "rus": "сохранить изменения"
+        },
+        "SignUp2": {
+            "eng": "Sign Up",
+            "rus": "вход"
+        },
+        "SignUp1": {
+            "eng": "Sign Up",
+            "rus": "вход"
+        },
+        "Personalinformation": {
+            "eng": "Personal information",
+            "rus": "Личная информация"
+        },
+        "PasswordLabel": {
+            "eng": "Password",
+            "rus": "Пароль"
+        },
+        "store": {
+            "eng": "store",
+            "rus": "магазин"
+        }
+
+    }
+}
